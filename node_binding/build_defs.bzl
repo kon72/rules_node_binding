@@ -3,12 +3,6 @@ def _clean_dep(dep):
     return str(Label(dep))
 
 NODE_CC_LIBRARY_COPTS = select({
-    _clean_dep("//node_binding:msvc_compiler"): [],
-    "//conditions:default": [
-        "-fvisibility=hidden",
-        "-fvisibility-inlines-hidden",
-    ],
-}) + select({
     _clean_dep("//node_binding:macos"): [
         "-D_DARWIN_USE_64_BIT_INODE=1",
     ],
@@ -36,7 +30,13 @@ def node_extension(
     native.cc_binary(
         name = "%s_cc_binary" % name,
         testonly = testonly,
-        copts = copts + NODE_CC_LIBRARY_COPTS,
+        copts = copts + NODE_CC_LIBRARY_COPTS + select({
+            _clean_dep("//node_binding:msvc_compiler"): [],
+            "//conditions:default": [
+                "-fvisibility=hidden",
+                "-fvisibility-inlines-hidden",
+            ],
+        }),
         linkopts = linkopts + select({
             _clean_dep("//node_binding:macos"): [
                 "-undefined",
