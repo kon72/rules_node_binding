@@ -2,7 +2,7 @@
 def _clean_dep(dep):
     return str(Label(dep))
 
-NODE_CC_LIBRARY_COPTS = select({
+NODE_BINDING_CC_LIBRARY_COPTS = select({
     _clean_dep("//node_binding:macos"): [
         "-D_DARWIN_USE_64_BIT_INODE=1",
     ],
@@ -15,7 +15,7 @@ NODE_CC_LIBRARY_COPTS = select({
     ],
 })
 
-NODE_CC_LIBRARY_DEPS = [
+NODE_BINDING_CC_LIBRARY_DEPS = [
     "@node_addon_api",
 ]
 
@@ -30,7 +30,7 @@ def node_extension(
     native.cc_binary(
         name = "%s_cc_binary" % name,
         testonly = testonly,
-        copts = copts + NODE_CC_LIBRARY_COPTS + select({
+        copts = copts + NODE_BINDING_CC_LIBRARY_COPTS + select({
             _clean_dep("//node_binding:msvc_compiler"): [],
             "//conditions:default": [
                 "-fvisibility=hidden",
@@ -46,7 +46,7 @@ def node_extension(
         }),
         linkshared = True,
         visibility = ["//visibility:private"],
-        deps = deps + NODE_CC_LIBRARY_DEPS + select({
+        deps = deps + NODE_BINDING_CC_LIBRARY_DEPS + select({
             _clean_dep("//node_binding:msvc_compiler"): [
                 _clean_dep("//node_binding/private:win_delay_load_hook"),
                 _clean_dep("//node_binding/private:node_api.lib"),
@@ -65,14 +65,14 @@ def node_extension(
         visibility = visibility,
     )
 
-def node_cc_library(
+def node_binding_cc_library(
         name,
         copts = [],
         deps = [],
         **kwargs):
     native.cc_library(
         name = name,
-        copts = copts + NODE_CC_LIBRARY_COPTS,
-        deps = deps + NODE_CC_LIBRARY_DEPS,
+        copts = copts + NODE_BINDING_CC_LIBRARY_COPTS,
+        deps = deps + NODE_BINDING_CC_LIBRARY_DEPS,
         **kwargs
     )
