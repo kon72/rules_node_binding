@@ -48,8 +48,8 @@ def node_extension(
         visibility = ["//visibility:private"],
         deps = deps + NODE_CC_LIBRARY_DEPS + select({
             _clean_dep("//node_binding:msvc_compiler"): [
-                "@node_interface_library//:interface",
-                "@node_interface_library//:win_delay_load_hook",
+                _clean_dep("//node_binding/private:win_delay_load_hook"),
+                _clean_dep("//node_binding/private:node_api.lib"),
             ],
             "//conditions:default": [],
         }),

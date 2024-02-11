@@ -1,0 +1,19 @@
+load(":generate_windows_import_lib.bzl", "generate_windows_import_lib")
+
+cc_library(
+    name = "win_delay_load_hook",
+    srcs = ["win_delay_load_hook.cc"],
+    defines = ["HOST_BINARY=\\\"node.exe\\\""],
+    linkopts = [
+        "delayimp.lib",
+        "/DELAYLOAD:node.exe",
+    ],
+    visibility = ["//visibility:public"],
+    alwayslink = True,
+)
+
+generate_windows_import_lib(
+    name = "node_api.lib",
+    def_file = "@node_api_headers//:node_api_def",
+    visibility = ["//visibility:public"],
+)

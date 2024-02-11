@@ -17,3 +17,9 @@ cc_library(
     includes = ["include"],
     visibility = ["//visibility:public"],
 )
+
+filegroup(
+    name = "node_api_def",
+    srcs = ["def/node_api.def"],
+    visibility = ["//visibility:public"],
+)
