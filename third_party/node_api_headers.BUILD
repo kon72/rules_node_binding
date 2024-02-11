@@ -10,10 +10,6 @@ cc_library(
         "include/node_api_types.h",
     ],
     hdrs = ["include/node_api.h"],
-    defines = [
-        "NAPI_VERSION=8",
-        "BUILDING_NODE_EXTENSION",
-    ],
     includes = ["include"],
     visibility = ["//visibility:public"],
 )

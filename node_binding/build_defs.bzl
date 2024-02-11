@@ -2,7 +2,15 @@
 def _clean_dep(dep):
     return str(Label(dep))
 
-NODE_BINDING_CC_LIBRARY_COPTS = select({
+NODE_BINDING_CC_LIBRARY_COPTS = [
+    # Used in node-api-headers
+    "-DBUILDING_NODE_EXTENSION",
+    "-DNAPI_VERSION=8",
+    # Used in node-addon-api
+    "-DNAPI_DISABLE_CPP_EXCEPTIONS",
+    "-DNODE_ADDON_API_DISABLE_DEPRECATED",
+    "-DNODE_ADDON_API_ENABLE_MAYBE",
+] + select({
     _clean_dep("//node_binding:macos"): [
         "-D_DARWIN_USE_64_BIT_INODE=1",
     ],
