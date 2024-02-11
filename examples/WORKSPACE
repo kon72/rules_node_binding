@@ -1,0 +1,10 @@
+workspace(name = "rules_node_binding_examples")
+
+local_repository(
+    name = "rules_node_binding",
+    path = "..",
+)
+
+load("@rules_node_binding//node_binding:repositories.bzl", "rules_node_binding_setup")
+
+rules_node_binding_setup()

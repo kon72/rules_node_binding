@@ -1,0 +1,6 @@
+load("@rules_node_binding//node_binding:build_defs.bzl", "node_extension")
+
+node_extension(
+    name = "hello_world",
+    srcs = ["hello_world.cc"],
+)
