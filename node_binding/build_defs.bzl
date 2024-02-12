@@ -12,15 +12,15 @@ NODE_BINDING_CC_LIBRARY_COPTS = [
     "-DNODE_ADDON_API_DISABLE_DEPRECATED",
     "-DNODE_ADDON_API_ENABLE_MAYBE",
 ] + select({
-    _clean_dep("//node_binding:napi_version_%s_enabled" % version): ["-DNAPI_VERSION=%s" % version]
+    _clean_dep(":napi_version_%s_enabled" % version): ["-DNAPI_VERSION=%s" % version]
     for version in NAPI_VERSIONS
 }) + select({
-    _clean_dep("//node_binding:macos"): [
+    _clean_dep(":macos"): [
         "-D_DARWIN_USE_64_BIT_INODE=1",
     ],
     "//conditions:default": [],
 }) + select({
-    _clean_dep("//node_binding:msvc_compiler"): [],
+    _clean_dep(":msvc_compiler"): [],
     "//conditions:default": [
         "-D_LARGEFILE_SOURCE",
         "-D_FILE_OFFSET_BITS=64",
@@ -43,14 +43,14 @@ def node_extension(
         name = "%s_cc_binary" % name,
         testonly = testonly,
         copts = copts + NODE_BINDING_CC_LIBRARY_COPTS + select({
-            _clean_dep("//node_binding:msvc_compiler"): [],
+            _clean_dep(":msvc_compiler"): [],
             "//conditions:default": [
                 "-fvisibility=hidden",
                 "-fvisibility-inlines-hidden",
             ],
         }),
         linkopts = linkopts + select({
-            _clean_dep("//node_binding:macos"): [
+            _clean_dep(":macos"): [
                 "-undefined",
                 "dynamic_lookup",
             ],
@@ -59,7 +59,7 @@ def node_extension(
         linkshared = True,
         visibility = ["//visibility:private"],
         deps = deps + NODE_BINDING_CC_LIBRARY_DEPS + select({
-            _clean_dep("//node_binding:msvc_compiler"): [
+            _clean_dep(":msvc_compiler"): [
                 _clean_dep("//node_binding/private:win_delay_load_hook"),
                 _clean_dep("//node_binding/private:node_api.lib"),
             ],
