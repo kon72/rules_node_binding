@@ -1,3 +1,20 @@
+load("//node_binding/private:napi_versions.bzl", "DEFAULT_NAPI_VERSION", "NAPI_VERSIONS")
+load("//node_binding/private:helper.bzl", "int_flag")
+
+int_flag(
+    name = "napi_version",
+    build_setting_default = DEFAULT_NAPI_VERSION,
+    values = NAPI_VERSIONS,
+    visibility = ["//visibility:public"],
+)
+
+[config_setting(
+    name = "napi_version_%s_enabled" % version,
+    flag_values = {
+        ":napi_version": str(version),
+    },
+) for version in NAPI_VERSIONS]
+
 config_setting(
     name = "macos",
     constraint_values = [

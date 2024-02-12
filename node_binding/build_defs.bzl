@@ -1,3 +1,5 @@
+load("//node_binding/private:napi_versions.bzl", "NAPI_VERSIONS")
+
 # Sanitize a dependency so that it works correctly from external repositories.
 def _clean_dep(dep):
     return str(Label(dep))
@@ -5,12 +7,14 @@ def _clean_dep(dep):
 NODE_BINDING_CC_LIBRARY_COPTS = [
     # Used in node-api-headers
     "-DBUILDING_NODE_EXTENSION",
-    "-DNAPI_VERSION=8",
     # Used in node-addon-api
     "-DNAPI_DISABLE_CPP_EXCEPTIONS",
     "-DNODE_ADDON_API_DISABLE_DEPRECATED",
     "-DNODE_ADDON_API_ENABLE_MAYBE",
 ] + select({
+    _clean_dep("//node_binding:napi_version_%s_enabled" % version): ["-DNAPI_VERSION=%s" % version]
+    for version in NAPI_VERSIONS
+}) + select({
     _clean_dep("//node_binding:macos"): [
         "-D_DARWIN_USE_64_BIT_INODE=1",
     ],
