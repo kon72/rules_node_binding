@@ -1,0 +1,20 @@
+load("@rules_node_binding//node_binding:build_defs.bzl", "node_binding_cc_library", "node_extension")
+
+node_extension(
+    name = "bindings",
+    srcs = ["bindings.cc"],
+    deps = [":calculator_node"],
+)
+
+node_binding_cc_library(
+    name = "calculator_node",
+    srcs = ["calculator_node.cc"],
+    hdrs = ["calculator_node.h"],
+    deps = [":calculator"],
+)
+
+cc_library(
+    name = "calculator",
+    srcs = ["calculator.cc"],
+    hdrs = ["calculator.h"],
+)
