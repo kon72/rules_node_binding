@@ -8,6 +8,10 @@ cc_library(
         "delayimp.lib",
         "/DELAYLOAD:node.exe",
     ],
+    target_compatible_with = select({
+        "//node_binding:msvc_compiler": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     visibility = ["//visibility:public"],
     alwayslink = True,
 )
@@ -15,5 +19,9 @@ cc_library(
 generate_windows_import_lib(
     name = "node_api.lib",
     def_file = "@node_api_headers//:node_api_def",
+    target_compatible_with = select({
+        "//node_binding:msvc_compiler": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
     visibility = ["//visibility:public"],
 )
