@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 3,
-  "moduleFileHash": "9951cfd47cccf63decfba852b6b3b3559e790f943df5a8e24baa02b1105eb49f",
+  "moduleFileHash": "cd6b3d8816ad66723216b98bfc6cf92c4814b02cc524e8d4543be196a8560cda",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -45,6 +45,7 @@
       ],
       "deps": {
         "platforms": "platforms@0.0.8",
+        "hedron_compile_commands": "hedron_compile_commands@_",
         "bazel_tools": "bazel_tools@_",
         "local_config_platform": "local_config_platform@_"
       }
@@ -75,6 +76,80 @@
           "remote_patches": {},
           "remote_patch_strip": 0
         }
+      }
+    },
+    "hedron_compile_commands@_": {
+      "name": "hedron_compile_commands",
+      "version": "",
+      "key": "hedron_compile_commands@_",
+      "repoName": "hedron_compile_commands",
+      "executionPlatformsToRegister": [],
+      "toolchainsToRegister": [],
+      "extensionUsages": [
+        {
+          "extensionBzlFile": "@hedron_compile_commands//:workspace_setup.bzl",
+          "extensionName": "hedron_compile_commands_extension",
+          "usingModule": "hedron_compile_commands@_",
+          "location": {
+            "file": "@@hedron_compile_commands~override//:MODULE.bazel",
+            "line": 3,
+            "column": 18
+          },
+          "imports": {},
+          "devImports": [],
+          "tags": [],
+          "hasDevUseExtension": false,
+          "hasNonDevUseExtension": true
+        },
+        {
+          "extensionBzlFile": "@hedron_compile_commands//:workspace_setup_transitive.bzl",
+          "extensionName": "hedron_compile_commands_extension",
+          "usingModule": "hedron_compile_commands@_",
+          "location": {
+            "file": "@@hedron_compile_commands~override//:MODULE.bazel",
+            "line": 4,
+            "column": 19
+          },
+          "imports": {},
+          "devImports": [],
+          "tags": [],
+          "hasDevUseExtension": false,
+          "hasNonDevUseExtension": true
+        },
+        {
+          "extensionBzlFile": "@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl",
+          "extensionName": "hedron_compile_commands_extension",
+          "usingModule": "hedron_compile_commands@_",
+          "location": {
+            "file": "@@hedron_compile_commands~override//:MODULE.bazel",
+            "line": 5,
+            "column": 20
+          },
+          "imports": {},
+          "devImports": [],
+          "tags": [],
+          "hasDevUseExtension": false,
+          "hasNonDevUseExtension": true
+        },
+        {
+          "extensionBzlFile": "@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl",
+          "extensionName": "hedron_compile_commands_extension",
+          "usingModule": "hedron_compile_commands@_",
+          "location": {
+            "file": "@@hedron_compile_commands~override//:MODULE.bazel",
+            "line": 6,
+            "column": 21
+          },
+          "imports": {},
+          "devImports": [],
+          "tags": [],
+          "hasDevUseExtension": false,
+          "hasNonDevUseExtension": true
+        }
+      ],
+      "deps": {
+        "bazel_tools": "bazel_tools@_",
+        "local_config_platform": "local_config_platform@_"
       }
     },
     "bazel_tools@_": {

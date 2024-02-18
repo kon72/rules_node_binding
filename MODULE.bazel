@@ -8,3 +8,10 @@ bazel_dep(name = "platforms", version = "0.0.8")
 
 rules_node_binding = use_extension("//node_binding:repositories.bzl", "rules_node_binding_extension")
 use_repo(rules_node_binding, "node_api_headers", "node_addon_api")
+
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
+git_override(
+    module_name = "hedron_compile_commands",
+    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    commit = "33658bab23a4858b513d767480b43d3d8fb6a3d1",
+)
