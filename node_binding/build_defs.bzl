@@ -28,7 +28,7 @@ NODE_BINDING_CC_LIBRARY_COPTS = [
 })
 
 NODE_BINDING_CC_LIBRARY_DEPS = [
-    "@node_addon_api",
+    _clean_dep("@node_addon_api"),
 ]
 
 def node_extension(
