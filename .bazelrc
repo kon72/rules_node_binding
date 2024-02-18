@@ -21,5 +21,9 @@ build --sandbox_default_allow_network=false
 # Docs: https://bazel.build/reference/command-line-reference#flag--host_jvm_args
 startup --host_jvm_args=-DBAZEL_TRACK_SOURCE_DIRECTORIES=1
 
+# Enable runfiles symlink tree for rules_jest.
+# Docs: https://bazel.build/reference/command-line-reference#flag--enable_runfiles
+build --enable_runfiles
+
 # This bazelrc file can be used for user-specific custom build settings.
 try-import %workspace%/.user.bazelrc

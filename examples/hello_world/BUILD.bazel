@@ -8,6 +8,10 @@ node_extension(
 
 jest_test(
     name = "hello_world_test",
+    args = [
+        "--runTestsByPath",
+        "%s/hello_world.test.js" % package_name(),
+    ],
     data = [
         ":hello_world",
         ":hello_world.test.js",
