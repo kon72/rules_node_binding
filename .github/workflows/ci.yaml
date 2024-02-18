@@ -43,9 +43,14 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ~/.cache/bazel
-          key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'MODULE.bazel', 'WORKSPACE') }}
-          restore-keys: bazel-cache-
+            ~/.cache/bazel-disk-cache
+            ~/.cache/bazel-repository-cache
+            ~/.cache/xdg-cache
+          key: >-
+            bazel-cache-${{ matrix.os }}-
+            ${{ hashFiles('.bazelrc', '.bazelversion', '**/BUILD', '**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel', 'WORKSPACE.bzlmod', 'MODULE.bazel', 'MODULE.bazel.lock') }}
+          restore-keys: |
+            bazel-cache-${{ matrix.os }}-
 
       # See https://github.com/bazel-contrib/publish-to-bcr#including-patches
       - name: verify bcr patches
@@ -53,7 +58,8 @@ jobs:
         run: patch --dry-run -p1 < .bcr/patches/*.patch
 
       - name: bazel test //...
+        run: bazel --bazelrc=.github/workflows/ci.bazelrc test //...
         env:
-          # Bazelisk will download bazel to here.
-          XDG_CACHE_HOME: ~/.cache/bazel-repo
-        run: bazel test //...
+          ASPECT_RULES_JS_FROZEN_PNPM_LOCK: 1
+          # bazelisk will download bazel to here
+          XDG_CACHE_HOME: ~/.cache/xdg-cache

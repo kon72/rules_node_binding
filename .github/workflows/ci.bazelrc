@@ -1,0 +1,29 @@
+# This file contains Bazel settings to apply on CI only.
+# It is referenced with a --bazelrc option in the call to bazel in ci.yaml
+
+# Announce all announces command options read from the bazelrc file(s) when starting up at the
+# beginning of each Bazel invocation. This is very useful on CI to be able to inspect what Bazel rc
+# settings are being applied on each run.
+# Docs: https://bazel.build/docs/user-manual#announce-rc
+build --announce_rc
+
+# Directories caches by GitHub actions
+common:local --disk_cache=~/.cache/bazel-disk-cache
+common --repository_cache=~/.cache/bazel-repository-cache
+
+# Output test errors to stderr so users don't have to `cat` or open test failure log files when test
+# fail. This makes the log noiser in exchange for reducing the time-to-feedback on test failures for
+# users.
+# Docs: https://bazel.build/docs/user-manual#test-output
+test --test_output=errors
+
+# Bazel-in-bazel support
+test --test_env=XDG_CACHE_HOME
+
+# Use cursor controls in screen output.
+# Docs: https://bazel.build/docs/user-manual#curses
+build --curses=yes
+
+# Use colors to highlight output on the screen. Set to `no` if your CI does not display colors.
+# Docs: https://bazel.build/docs/user-manual#color
+build --color=yes
