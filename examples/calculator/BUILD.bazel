@@ -1,3 +1,4 @@
+load("@aspect_rules_jest//jest:defs.bzl", "jest_test")
 load("@rules_node_binding//node_binding:build_defs.bzl", "node_binding_cc_library", "node_extension")
 
 node_extension(
@@ -17,4 +18,13 @@ cc_library(
     name = "calculator",
     srcs = ["calculator.cc"],
     hdrs = ["calculator.h"],
+)
+
+jest_test(
+    name = "calculator_test",
+    data = [
+        ":bindings",
+        ":calculator.test.js",
+    ],
+    node_modules = "//examples:node_modules",
 )

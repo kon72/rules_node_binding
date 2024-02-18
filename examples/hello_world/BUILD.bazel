@@ -1,6 +1,16 @@
+load("@aspect_rules_jest//jest:defs.bzl", "jest_test")
 load("@rules_node_binding//node_binding:build_defs.bzl", "node_extension")
 
 node_extension(
     name = "hello_world",
     srcs = ["hello_world.cc"],
+)
+
+jest_test(
+    name = "hello_world_test",
+    data = [
+        ":hello_world",
+        ":hello_world.test.js",
+    ],
+    node_modules = "//examples:node_modules",
 )
