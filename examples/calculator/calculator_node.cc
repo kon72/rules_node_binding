@@ -1,9 +1,9 @@
-#include "calculator/calculator_node.h"
+#include "examples/calculator/calculator_node.h"
 
-#include "calculator/calculator.h"
+#include "examples/calculator/calculator.h"
 #include "napi.h"
 
-namespace calculator {
+namespace examples {
 namespace node {
 
 class CalculatorNode : public Napi::ObjectWrap<CalculatorNode> {
@@ -60,4 +60,4 @@ void RegisterCalculator(Napi::Env env, Napi::Object exports) {
 }
 
 }  // namespace node
-}  // namespace calculator
+}  // namespace examples

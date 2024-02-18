@@ -1,7 +1,7 @@
-#include "calculator/calculator_node.h"
+#include "examples/calculator/calculator_node.h"
 #include "napi.h"
 
-namespace calculator {
+namespace examples {
 namespace node {
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
@@ -12,4 +12,4 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 NODE_API_MODULE(addon, Init)
 
 }  // namespace node
-}  // namespace calculator
+}  // namespace examples

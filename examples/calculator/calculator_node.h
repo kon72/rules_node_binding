@@ -1,14 +1,14 @@
-#ifndef CALCULATOR_CALCULATOR_NODE_H_
-#define CALCULATOR_CALCULATOR_NODE_H_
+#ifndef EXAMPLES_CALCULATOR_CALCULATOR_NODE_H_
+#define EXAMPLES_CALCULATOR_CALCULATOR_NODE_H_
 
 #include "napi.h"
 
-namespace calculator {
+namespace examples {
 namespace node {
 
 void RegisterCalculator(Napi::Env env, Napi::Object exports);
 
 }  // namespace node
-}  // namespace calculator
+}  // namespace examples
 
-#endif  // CALCULATOR_CALCULATOR_NODE_H_
+#endif  // EXAMPLES_CALCULATOR_CALCULATOR_NODE_H_

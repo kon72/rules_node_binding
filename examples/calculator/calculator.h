@@ -1,7 +1,7 @@
-#ifndef CALCULATOR_CALCULATOR_H_
-#define CALCULATOR_CALCULATOR_H_
+#ifndef EXAMPLES_CALCULATOR_CALCULATOR_H_
+#define EXAMPLES_CALCULATOR_CALCULATOR_H_
 
-namespace calculator {
+namespace examples {
 
 class Calculator {
  public:
@@ -19,6 +19,6 @@ class Calculator {
   int value_ = 0;
 };
 
-}  // namespace calculator
+}  // namespace examples
 
-#endif  // CALCULATOR_CALCULATOR_H_
+#endif  // EXAMPLES_CALCULATOR_CALCULATOR_H_

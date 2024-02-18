@@ -1,6 +1,6 @@
-#include "calculator/calculator.h"
+#include "examples/calculator/calculator.h"
 
-namespace calculator {
+namespace examples {
 
 Calculator ::Calculator() {}
 
@@ -12,4 +12,4 @@ int Calculator::GetResult() const { return value_; }
 
 void Calculator::Clear() { value_ = 0; }
 
-}  // namespace calculator
+}  // namespace examples
