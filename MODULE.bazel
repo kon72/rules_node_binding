@@ -1,0 +1,10 @@
+module(
+    name = "rules_node_binding",
+    version = "head",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "platforms", version = "0.0.8")
+
+rules_node_binding = use_extension("//node_binding:repositories.bzl", "rules_node_binding_extension")
+use_repo(rules_node_binding, "node_api_headers", "node_addon_api")
