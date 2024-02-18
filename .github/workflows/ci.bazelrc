@@ -20,10 +20,6 @@ test --test_output=errors
 # Bazel-in-bazel support
 test --test_env=XDG_CACHE_HOME
 
-# Use cursor controls in screen output.
-# Docs: https://bazel.build/docs/user-manual#curses
-build --curses=yes
-
 # Use colors to highlight output on the screen. Set to `no` if your CI does not display colors.
 # Docs: https://bazel.build/docs/user-manual#color
 build --color=yes
