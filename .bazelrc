@@ -25,5 +25,10 @@ startup --host_jvm_args=-DBAZEL_TRACK_SOURCE_DIRECTORIES=1
 # Docs: https://bazel.build/reference/command-line-reference#flag--enable_runfiles
 build --enable_runfiles
 
+# Enable the Bzlmod dependency management system.
+# This is enabled by default as of Bazel 7.0 but leave it here as BCR CI runs tests on Bazel 6.x.
+# Docs: https://bazel.build/reference/command-line-reference#flag--enable_bzlmod
+common --enable_bzlmod
+
 # This bazelrc file can be used for user-specific custom build settings.
 try-import %workspace%/.user.bazelrc
