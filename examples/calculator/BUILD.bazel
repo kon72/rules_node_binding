@@ -23,6 +23,8 @@ cc_library(
 jest_test(
     name = "calculator_test",
     args = [
+        # Needed for Windows.
+        # https://github.com/aspect-build/rules_jest/blob/22f68e81c172a694d190122e6caa1938e1bb4bde/e2e/smoke/BUILD.bazel#L22
         "--runTestsByPath",
         "%s/calculator.test.js" % package_name(),
     ],
