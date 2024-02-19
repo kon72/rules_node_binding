@@ -26,38 +26,8 @@ See [examples](examples) for more details.
 
 ## Installation
 
-### If your project adopts [Bzlmod](https://bazel.build/external/migration) system
-
-Add the following to your `MODULE.bazel` file:
-
-```Starlark
-bazel_dep(name = "rules_node_binding")
-archive_override(
-    module_name = "rules_node_binding",
-    integrity = "sha256-yrGTzp9iRs9ZnXdsW3mogn5VAlJRCcREBjeOmhsfoVM=",
-    strip_prefix = "rules_node_binding-4bd65b67ef73eb5776a0909953323adcfff2ce3d",
-    urls = ["https://github.com/kon72/rules_node_binding/archive/4bd65b67ef73eb5776a0909953323adcfff2ce3d.tar.gz"],
-)
-```
-
-### If your project is using WORKSPACE system
-
-Add the following to your `WORKSPACE` file:
-
-```Starlark
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "rules_node_binding",
-    integrity = "sha256-yrGTzp9iRs9ZnXdsW3mogn5VAlJRCcREBjeOmhsfoVM=",
-    strip_prefix = "rules_node_binding-4bd65b67ef73eb5776a0909953323adcfff2ce3d",
-    urls = ["https://github.com/kon72/rules_node_binding/archive/4bd65b67ef73eb5776a0909953323adcfff2ce3d.tar.gz"],
-)
-
-load("@rules_node_binding//node_binding:repositories.bzl", "rules_node_binding_setup")
-
-rules_node_binding_setup()
-```
+See [Release Notes](https://github.com/kon72/rules_node_binding/releases) for
+installation instructions.
 
 
 ## FAQ
