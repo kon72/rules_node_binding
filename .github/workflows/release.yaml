@@ -8,6 +8,9 @@ on:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -37,7 +40,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          prerelease: ${{ inputs.prerelease }}
           # Use GH feature to populate the changelog automatically
           generate_release_notes: true
           body_path: release_notes.txt
